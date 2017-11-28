@@ -279,7 +279,7 @@
             "debugSetting": {
               "detailLevel": "requestContent, responseContent"
             },
-            "packageUri": "https://github.com/JitendraMishra2010/CRMArchival/raw/master/Microsoft.Dynamics.Archival.WebappForWebJobs.zip"
+            "packageUri": "https://github.com/GowthamChalla/CRMArchival/raw/master/Microsoft.Dynamics.Archival.WebappForWebJobs.zip"
           },
           "dependsOn": [
             "[concat('Microsoft.Web/sites/', variables('webSiteName'))]"
