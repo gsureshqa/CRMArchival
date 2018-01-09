@@ -12,19 +12,25 @@
       "type": "String"
     },
     "webSiteName": {
-      "type": "String"
+      "type": "String",
+      "defaultValue": "CRMArchivalWebApp"
+
     },
     "keyVaultName": {
-      "type": "String"
+      "type": "String",
+      "defaultValue": "crmarchivalkeyvault"
     },
     "databaseAccountName": {
-      "type": "String"
-        
+      "type": "String",
+      "defaultValue": "crmarchivalcosmosdbacc"
+
     },
     "storageAccountName": {
-      "type": "String"
+      "type": "String",
+      "defaultValue": "crmarchivalstorageacc"
     },
     "ThreadCount": {
+      "defaultValue": "50",
       "type": "String"
     },
     "KeyVaultApplicationId": {
@@ -41,7 +47,8 @@
     },
     "hostingPlanName": {
       "minLength": 1,
-      "type": "String"
+      "type": "String",
+      "defaultValue": "crmarchivalappplan"
     },
     "CRMWebAPIVersion": {
       "defaultValue": "8.1",
@@ -55,7 +62,7 @@
       }
     },
     "skuName": {
-      "defaultValue": "B3",
+      "defaultValue": "S3",
       "allowedValues": [
         "B1",
         "B2",
