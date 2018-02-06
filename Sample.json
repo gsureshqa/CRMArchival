@@ -29,7 +29,7 @@
       {
       "type": "String",
       "defaultValue": "crmarchivalcosmosdbacc"
-      },
+,      },
     "storageAccountName": 
       {
       "type": "String",
@@ -97,5 +97,25 @@
       "allowedValues": ["Standard_LRS","Standard_ZRS","Standard_GRS","Standard_RAGRS","Premium_LRS"],
       "type": "String"
       }
-}
+},
+     "variables": 
+{
+    "webSiteName": "[parameters('webSiteName')]",
+    "storageaccountName": "[parameters('storageAccountName')]",
+    "KeyVaultName": "[parameters('keyVaultName')]"
+},
+"resources": 
+[
+  {
+    "type": "Microsoft.DocumentDB/databaseAccounts",
+    "name": "[parameters('databaseAccountName')]",
+    "apiVersion": "2015-04-08",
+    "location": "[resourceGroup().location]",
+    "properties": 
+      {
+      "name": "[parameters('databaseAccountName')]",
+      "databaseAccountOfferType": "Standard"
+      }
+  }
+]
 }
