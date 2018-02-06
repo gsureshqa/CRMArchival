@@ -1,0 +1,102 @@
+﻿{
+"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+"contentVersion": "1.0.0.0",
+"parameters":
+{
+    "CRMUsername": 
+      {
+      "type": "String"
+      },
+    "CRMPassword": 
+      {
+      "type": "SecureString"
+      },
+    "CRMResourceUrl":
+      {
+      "type": "String"
+      },
+    "webSiteName": 
+      {
+      "type": "String",
+      "defaultValue": "CRMArchivalWebApp"
+      },
+    "keyVaultName": 
+      {
+      "type": "String",
+      "defaultValue": "crmarchivalkeyvault"
+      },
+    "databaseAccountName": 
+      {
+      "type": "String",
+      "defaultValue": "crmarchivalcosmosdbacc"
+      },
+    "storageAccountName": 
+      {
+      "type": "String",
+      "defaultValue": "crmarchivalstorageacc"
+      },
+    "ThreadCount": 
+      {
+      "defaultValue": "50",
+      "type": "String"
+      },
+    "KeyVaultApplicationId": 
+      {
+      "type": "String"
+      },
+    "SecretKey": 
+      {
+      "type": "SecureString"
+      },
+    "ObjectId": 
+      {
+      "type": "String"
+      },
+    "NativeApplicationId": 
+      {
+      "type": "String"
+      },
+    "hostingPlanName": 
+      {
+      "minLength": 1,
+      "type": "String",
+      "defaultValue": "crmarchivalappplan"
+      },
+    "CRMWebAPIVersion": 
+      {
+      "defaultValue": "8.1",
+      "allowedValues": ["8.1","8.2"],
+      "type": "String",
+      "metadata": 
+      {
+      "description": "Describes plan's pricing tier and instance size. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
+      }
+      },
+    "skuName": 
+      {
+      "defaultValue": "S3",
+      "allowedValues": ["B1","B2","B3","S1","S2","S3","P1","P2","P3","P4"],
+      "type": "String",
+      "metadata": 
+      {
+      "description": "Describes plan's pricing tier and instance size. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
+      }
+      },
+      "skuCapacity": 
+      {
+      "defaultValue": 1,
+      "minValue": 1,
+      "type": "Int",
+      "metadata": 
+      {
+      "description": "Describes plan's instance count"
+      }
+      },
+    "storageaccountType": 
+      {
+      "defaultValue": "Standard_LRS",
+      "allowedValues": ["Standard_LRS","Standard_ZRS","Standard_GRS","Standard_RAGRS","Premium_LRS"],
+      "type": "String"
+      }
+},
+}
