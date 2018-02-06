@@ -47,8 +47,7 @@
     "SecretKey": 
       {
       "type": "SecureString"
-      },
-    "ObjectId": 
+      },    "ObjectId": 
       {
       "type": "String"
       },
@@ -98,5 +97,5 @@
       "allowedValues": ["Standard_LRS","Standard_ZRS","Standard_GRS","Standard_RAGRS","Premium_LRS"],
       "type": "String"
       }
-},
+}
 }
