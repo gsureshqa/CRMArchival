@@ -96,7 +96,7 @@
       "name": "[parameters('databaseAccountName')]",      
       "apiVersion": "2015-04-08",      
       "location": "[resourceGroup().location]",      
-      "properties": 
+      "properties":
           {        
              "name": "[parameters('databaseAccountName')]",        
              "databaseAccountOfferType": "Standard"      
