@@ -127,7 +127,7 @@
            "displayName": "Website"      
            },      
         "properties": 
-           {
+              {
             "name": "[variables('webSiteName')]",        
             "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]",        
             "siteConfig": 
@@ -155,7 +155,7 @@
                    },            
                    {             
                    "Value": "[parameters('SecretKey')]",              
-,                   "Name": "keyvaultclientsecretId"            
+                   "Name": "keyvaultclientsecretId"            
                    },            
                    {              
                    "Value": "[concat('https://',variables('KeyVaultName'), '.vault.azure.net/')]",              
@@ -210,6 +210,6 @@
                    }          
                   ]        
                  }     
-                },
+                }
              ]             
          }
