@@ -152,7 +152,7 @@
                   {              
                    "Value": "[parameters('KeyVaultApplicationId')]",              
                    "Name": "keyvaultclientId"            
-                   },            
+                  },            
                    {             
                    "Value": "[parameters('SecretKey')]",              
                    "Name": "keyvaultclientsecretId"            
@@ -211,6 +211,6 @@
                   ]        
                  } 
               }
-            },
+            }
           ]             
         }
