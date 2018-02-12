@@ -159,7 +159,7 @@
                    },            
                    {              
                    "Value": "[concat('https://',variables('KeyVaultName'), '.vault.azure.net/')]",              
-                   "Name": "keyvaulturl"            
+                   "Name": "keyvaulturl" 
                    },            
                    {              
                    "Value": "0 20 */1 * * *",             
@@ -211,6 +211,7 @@
                   ]        
                  }     
                 }
-             ]             
+             ] 
+           ]
          }
          
