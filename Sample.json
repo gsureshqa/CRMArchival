@@ -98,8 +98,8 @@
       "location": "[resourceGroup().location]",      
       "properties":
           {        
-             "name": "[parameters('databaseAccountName')]",        
-             "databaseAccountOfferType": "Standard"      
+             "name": "[parameters('databaseAccountName')]",
+              "databaseAccountOfferType": "Standard"      
           }    
        },    
        {      
@@ -153,7 +153,106 @@
                "family": "A"        
               }      
              }    
-           },   
+           }, 
+     {      
+     "type": "Microsoft.KeyVault/vaults/secrets",      
+     "name": "[concat(variables('KeyVaultName'), '/','CRMUsername')]",      
+     "apiVersion": "2015-06-01",      
+     "properties": 
+       {        
+         "contentType": "text/plain",        
+         "value": "[parameters('CRMUsername')]"      
+       },     
+     "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]    
+    },    
+    {      
+     "type": "Microsoft.KeyVault/vaults/secrets",      
+     "name": "[concat(variables('KeyVaultName'), '/','CRMPassword')]",      
+     "apiVersion": "2015-06-01",      
+     "properties": 
+      {        
+       "contentType": "text/plain",        
+       "value": "[parameters('CRMPassword')]"      
+      },      
+     "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]    
+    },    
+    {      
+     "type": "Microsoft.KeyVault/vaults/secrets",      
+     "name": "[concat(variables('KeyVaultName'), '/','DocumentDBEndpointUrl')]",      
+     "apiVersion": "2015-06-01",      
+     "properties": 
+      {        
+       "contentType": "text/plain",        
+       "value": "[reference(concat('Microsoft.DocumentDb/databaseAccounts/', parameters('databaseAccountName'))).documentEndpoint]"      
+      },      
+     "dependsOn": [ "[concat('Microsoft.DocumentDB/databaseAccounts/', parameters('databaseAccountName'))]", "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]    
+    },    
+    {      
+     "type": "Microsoft.KeyVault/vaults/secrets",      
+     "name": "[concat(variables('KeyVaultName'), '/','DocumentDBPrimaryKey')]",      
+     "apiVersion": "2015-06-01",     
+     "properties":
+      {       
+       "contentType": "text/plain",        
+       "value": "[listKeys(resourceId('Microsoft.DocumentDb/databaseAccounts', parameters('databaseAccountName')), '2015-04-08').primaryMasterKey]"      
+      },     
+     "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]", "[concat('Microsoft.DocumentDB/databaseAccounts/', parameters('databaseAccountName'))]" ]   
+    },    
+    {      
+     "type": "Microsoft.KeyVault/vaults/secrets",      
+     "name": "[concat(variables('KeyVaultName'), '/','CloudStorageAccountName')]",      
+     "apiVersion": "2015-06-01",      
+     "properties": 
+      {       
+       "contentType": "text/plain",        
+       "value": "[variables('storageaccountName')]"      
+      },      
+      "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]    
+     },    
+     {      
+      "type": "Microsoft.KeyVault/vaults/secrets",      
+      "name": "[concat(variables('KeyVaultName'), '/','CloudStorageAccountKey')]",      
+      "apiVersion": "2015-06-01",      
+      "properties": 
+       {        
+        "contentType": "text/plain",        
+        "value": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageaccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]"      
+       },      
+       "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]    
+      },    
+      {  
+       "type": "Microsoft.KeyVault/vaults/secrets",      
+       "name": "[concat(variables('KeyVaultName'), '/','CRMResourceUrl')]",      
+       "apiVersion": "2015-06-01",      
+       "properties": 
+        {        
+         "contentType": "text/plain",        
+         "value": "[parameters('CRMResourceUrl')]"      
+        },      
+        "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]    
+       },    
+       {      
+        "type": "Microsoft.KeyVault/vaults/secrets",      
+        "name": "[concat(variables('KeyVaultName'), '/','CRMClientId')]",      
+        "apiVersion": "2015-06-01",      
+        "properties":
+         {        
+          "contentType": "text/plain",       
+          "value": "[parameters('NativeApplicationId')]"      
+         },      
+        "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]    
+        },   
+        {      
+         "type": "Microsoft.KeyVault/vaults/secrets",      
+         "name": "[concat(variables('KeyVaultName'), '/','CRMWebAPIVersion')]",      
+         "apiVersion": "2015-06-01",      
+         "properties": 
+          {        
+           "contentType": "text/plain",        
+           "value": "[parameters('CRMWebAPIVersion')]"      
+          },      
+         "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]    
+        } 
         ]
      }
      
