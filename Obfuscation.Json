@@ -1,4 +1,5 @@
-﻿{
+
+{
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
@@ -8,13 +9,26 @@
       "defaultValue": "Obfuscationkeyvault",
       "metadata": { "description": "Enter the name you wish to give to the Key vault, Do not enter the name that already exists." }
     },
+    "storageAccountName": 
+    {      
+      "type": "String",  
+      "defaultValue": "Obfuscationstorageacc",
+      "metadata": { "description": "Enter the name you wish to give to the Storage account.Maximum allowed characters are 24, Do not enter the name that already exists." }    
+    },
+    "storageaccountType": 
+    {      
+     "defaultValue": "Standard_LRS",      
+     "allowedValues": [ "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS" ],     
+     "type": "String"    
+    },  
     "ObjectId": 
      { 
       "type": "String" 
      }
   },
   "variables": {
-    "KeyVaultName": "[parameters('keyVaultName')]"
+    "KeyVaultName": "[parameters('keyVaultName')]",
+    "storageaccountName": "[parameters('storageAccountName')]"
   },
   "resources": 
   [
@@ -44,6 +58,15 @@
           "family": "A"
         }
       }
+    },
+    {      
+        "type": "Microsoft.Storage/storageAccounts",      
+        "name": "[variables('storageaccountName')]",      
+        "apiVersion": "2015-06-15",      
+        "location": "[resourceGroup().location]",      
+        "tags": { "displayName": "storageaccount" },      
+        "properties": { "accountType": "[parameters('storageaccountType')]" },      
+        "dependsOn": []    
     }
   ]
 }
