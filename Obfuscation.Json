@@ -1,0 +1,44 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "keyVaultName": {
+      "type": "String",
+      "defaultValue": "Obfuscationkeyvault",
+      "metadata": { "description": "Enter the name you wish to give to the Key vault, Do not enter the name that already exists." }
+    }
+  },
+  "variables": {
+    "KeyVaultName": "[parameters('keyVaultName')]"
+  },
+  "resources": 
+  [
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "name": "[variables('KeyVaultName')]",
+      "apiVersion": "2015-06-01",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "KeyVault"
+      },
+      "properties": {
+        "tenantId": "[subscription().tenantId]",
+        "accessPolicies": [
+          {
+            "tenantId": "[subscription().tenantId]",
+            "objectId": "[parameters('ObjectId')]",
+            "permissions": {
+              "keys": [ "all" ],
+              "secrets": [ "all" ]
+            }
+          }
+        ],
+        "enabledForTemplateDeployment": true,
+        "sku": {
+          "name": "Standard",
+          "family": "A"
+        }
+      }
+    }
+  ]
+}
