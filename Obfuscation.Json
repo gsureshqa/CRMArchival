@@ -27,7 +27,7 @@
     "storageAccountName": 
     {      
       "type": "String",  
-      "defaultValue": "Obfuscationstorageacc",
+      "defaultValue": "obfuscationstorageacc",
       "metadata": { "description": "Enter the name you wish to give to the Storage account.Maximum allowed characters are 24, Do not enter the name that already exists." }    
     },
     "NativeApplicationId": 
