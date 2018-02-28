@@ -2,49 +2,100 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-   "ObfuscationCRMBaseUrl": 
-    {      
+    "CRMBaseURL": {
       "type": "String",
-      "metadata": { "description": "CRM url e.g., https://xxxx.crm.dynamics.com" } 
+      "metadata": { "description": "CRM Org url e.g., https://xxxx.crm.dynamics.com" }
     },
-    "Obfuscation-CRMUsername":
-    {      
-      "type": "String",  
+    "CRMUsername": {
+      "type": "String",
       "metadata": { "description": "Enter the CRM User name which will be used to login to CRM having admin privileges" }
     },
-    "Obfuscation-CRMPassword": 
-    {      
+    "CRMPassword": {
       "type": "SecureString",
-      "metadata": { "description": "Enter the Password of the CRM User name" } 
+      "metadata": { "description": "Enter the Password of the CRM User name" }
     },
-    "keyVaultName": 
-    {
+    "CRMClientId": {
       "type": "String",
-      "defaultValue": "Obfuscationkeyvault1",
+      "metadata": { "description": "Enter CRM Client ID" }
+    },
+    "CRMAPIVersion": {
+      "defaultValue": "8.1",
+      "allowedValues": [ "8.1", "8.2", "9.0" ],
+      "type": "String",
+      "metadata": { "description": "Select the version of CRM online that you are using" }
+    },
+    "webSiteName": {
+      "type": "String",
+      "defaultValue": "obfuscationWebApp",
+      "metadata": { "description": "Enter the name you wish to give to the App Service, Do not enter the name that already exists." }
+    },
+    "keyVaultName": {
+      "type": "String",
+      "defaultValue": "obfuscationkeyvault",
       "metadata": { "description": "Enter the name you wish to give to the Key vault, Do not enter the name that already exists." }
     },
-    "storageAccountName": 
-    {      
-      "type": "String",  
+    "StorageAccountName": {
+      "type": "String",
       "defaultValue": "obfuscationstorageacc",
-      "metadata": { "description": "Enter the name you wish to give to the Storage account.Maximum allowed characters are 24, Do not enter the name that already exists." }    
-    },     
-    "storageaccountType": 
-    {      
-     "defaultValue": "Standard_LRS",      
-     "allowedValues": [ "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS" ],     
-     "type": "String"    
-    },     
-    "ObjectId": 
-     { 
-      "type": "String" 
-     },
-    "NativeApplicationId": 
-     { 
-       "type": "String" 
-     }
+      "metadata": { "description": "Enter the name you wish to give to the Storage account, Do not enter the name that already exists." }
+    },
+    "storageaccountType": {
+      "defaultValue": "Standard_LRS",
+      "allowedValues": [ "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS" ],
+      "type": "String"
+    },
+    "WebAPIClientId": {
+      "type": "String",
+      "metadata": { "description": "Enter the Application Id of the Web app app that is registered in Azure Active Directory" }
+    },
+    "WebAPISecret": {
+      "type": "SecureString",
+      "metadata": { "description": "Enter the Web application secret key" }
+    },
+    "WebAPIObjectId": {
+      "type": "String",
+      "metadata": { "description": "Enter the Web application Object ID" }
+    },
+    "NativeClientId": {
+      "type": "String",
+      "metadata": { "description": "Enter the Native application ID that is registered in Azure Active Directory" }
+    },
+    "DataCatalogName": {
+      "type": "String",
+      "metadata": { "description": "Enter the Data Catalog Name" }
+    },
+    "DataCatalogClientId": {
+      "type": "String",
+      "metadata": { "description": "Enter the Data Catalog Client ID" }
+    },
+    "DataCatalogSecret": {
+      "type": "SecureString",
+      "metadata": { "description": "Enter the Data Catelog secret key" }
+    },
+    "DataCatalogTenantId": {
+      "type": "String",
+      "metadata": { "description": "Enter the Data Catelog Tenant ID" }
+    },
+    "hostingPlanName": {
+      "minLength": 1,
+      "type": "String",
+      "defaultValue": "obfuscationAppPlan"
+    },
+    "skuName": {
+      "defaultValue": "S3",
+      "allowedValues": [ "B1", "B2", "B3", "S1", "S2", "S3", "P1", "P2", "P3", "P4" ],
+      "type": "String",
+      "metadata": { "description": "Describes plan's pricing tier and instance size. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/" }
+    },
+    "skuCapacity": {
+      "defaultValue": 1,
+      "minValue": 1,
+      "type": "Int",
+      "metadata": { "description": "Describes plan's instance count" }
+    }
   },
   "variables": {
+    "webSiteName": "[parameters('webSiteName')]",
     "KeyVaultName": "[parameters('keyVaultName')]",
     "storageaccountName": "[parameters('storageAccountName')]"
   },
@@ -60,10 +111,11 @@
       },
       "properties": {
         "tenantId": "[subscription().tenantId]",
-        "accessPolicies": [
+        "accessPolicies": 
+        [
           {
             "tenantId": "[subscription().tenantId]",
-            "objectId": "[parameters('ObjectId')]",
+            "objectId": "[parameters('WebAPIObjectId')]",
             "permissions": {
               "keys": [ "all" ],
               "secrets": [ "all" ]
@@ -76,59 +128,6 @@
           "family": "A"
         }
       }
-    },
-    {      
-        "type": "Microsoft.Storage/storageAccounts",      
-        "name": "[variables('storageaccountName')]",      
-        "apiVersion": "2015-06-15",      
-        "location": "[resourceGroup().location]",      
-        "tags": { "displayName": "storageaccount" },      
-        "properties": { "accountType": "[parameters('storageaccountType')]" },      
-        "dependsOn": []    
-    },
-    {  
-       "type": "Microsoft.KeyVault/vaults/secrets",      
-       "name": "[concat(variables('KeyVaultName'), '/','ObfuscationCRMBaseURL')]",      
-       "apiVersion": "2015-06-01",      
-       "properties": 
-        {        
-         "contentType": "text/plain",        
-         "value": "[parameters('ObfuscationCRMBaseURL')]"      
-        },      
-        "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]    
-     },
-     {      
-     "type": "Microsoft.KeyVault/vaults/secrets",      
-     "name": "[concat(variables('KeyVaultName'), '/','Obfuscation-CRMUsername')]",      
-     "apiVersion": "2015-06-01",      
-     "properties": 
-       {        
-         "contentType": "text/plain",        
-         "value": "[parameters('Obfuscation-CRMUsername')]"      
-       },     
-     "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]    
-    },    
-    {      
-     "type": "Microsoft.KeyVault/vaults/secrets",      
-     "name": "[concat(variables('KeyVaultName'), '/','Obfuscation-CRMPassword')]",      
-     "apiVersion": "2015-06-01",      
-     "properties": 
-      {        
-       "contentType": "text/plain",        
-       "value": "[parameters('Obfuscation-CRMPassword')]"      
-      },      
-     "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]    
-    }, 
-    {      
-        "type": "Microsoft.KeyVault/vaults/secrets",      
-        "name": "[concat(variables('KeyVaultName'), '/','CRMAADClientId')]",      
-        "apiVersion": "2015-06-01",      
-        "properties":
-         {        
-          "contentType": "text/plain",       
-          "value": "[parameters('NativeApplicationId')]"      
-         },      
-        "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]    
-      }
+    }   
   ]
 }
