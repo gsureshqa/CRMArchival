@@ -273,6 +273,54 @@
         "value": "[parameters('WebAPISecret')]"
       },
       "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "name": "[parameters('webSiteName')]",
+      "apiVersion": "2015-08-01",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "Resource",
+        "displayName": "Website"
+      },
+      "properties": {
+        "name": "[variables('webSiteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]",
+        "siteConfig": {
+          "phpVersion": "off",
+          "alwaysOn": true,
+          "connectionStrings": [
+            {
+              "ConnectionString": "[Concat('DefaultEndpointsProtocol=https;AccountName=',variables('StorageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('StorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]",
+              "Name": "AzureWebJobsDashboard",
+              "Type": 3
+            },
+            {
+              "ConnectionString": "[Concat('DefaultEndpointsProtocol=https;AccountName=',variables('StorageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('StorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]",
+              "Name": "AzureWebJobsStorage",
+              "Type": 3
+            }
+          ]          
+        }
+      },
+      "resources": 
+      [
+        {
+          "type": "extensions",
+          "name": "MSDeploy",
+          "apiVersion": "2015-08-01",
+          "location": "[resourceGroup().location]",
+          "tags": { "displayName": "WebDeployforWebApp" },
+          "properties": {
+            "alwaysOn": true,
+            "dbType": "None",
+            "debugSetting": { "detailLevel": "requestContent, responseContent" },
+            "packageUri": "https://github.com/JitendraMishra2010/CRMArchival/raw/master/Microsoft.Dynamics.Archival.D365WebApp.zip"
+          },
+          "dependsOn": [ "[concat('Microsoft.Web/sites/', variables('webSiteName'))]" ]
+        }
+      ],
+      "dependsOn": [ "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]", "[concat('Microsoft.Storage/storageAccounts/',variables('storageaccountName'))]" ]
     }
   ]
 }
