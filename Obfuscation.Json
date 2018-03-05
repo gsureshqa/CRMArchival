@@ -97,6 +97,27 @@
   },
   "resources": [
     {
+      "type": "Microsoft.Web/serverfarms",
+      "sku": {
+        "name": "[parameters('skuName')]",
+        "capacity": "[parameters('skuCapacity')]"
+      },
+      "name": "[parameters('hostingPlanName')]",
+      "apiVersion": "2015-08-01",
+      "location": "[resourceGroup().location]",
+      "tags": { "displayName": "HostingPlan" },
+      "properties": { "name": "[parameters('hostingPlanName')]" }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('StorageAccountName')]",
+      "apiVersion": "2015-06-15",
+      "location": "[resourceGroup().location]",
+      "tags": { "displayName": "storageaccount" },
+      "properties": { "accountType": "[parameters('storageaccountType')]" },
+      "dependsOn": []
+    },
+    {
       "type": "Microsoft.KeyVault/vaults",
       "name": "[variables('KeyVaultName')]",
       "apiVersion": "2015-06-01",
