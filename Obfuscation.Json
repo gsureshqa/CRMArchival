@@ -270,7 +270,7 @@
       "apiVersion": "2015-06-01",
       "properties": {
         "contentType": "text/plain",
-        "value": "[variables('WebAPISecret')]"
+        "value": "[parameters('WebAPISecret')]"
       },
       "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]
     }
