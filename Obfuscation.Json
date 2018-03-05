@@ -300,7 +300,41 @@
               "Name": "AzureWebJobsStorage",
               "Type": 3
             }
-          ]          
+          ],
+          "appSettings": [
+            {
+              "Value": "[parameters('WebAPIClientId')]",
+              "Name": "WebAPIClientId"
+            },
+            {
+              "Value": "[parameters('WebAPISecret')]",
+              "Name": "WebAPISecretId"
+            },
+            {
+              "Value": "[concat('https://',variables('KeyVaultName'), '.vault.azure.net/')]",
+              "Name": "keyvaulturl"
+            },
+            {
+              "Value": "0 20 */1 * * *",
+              "Name": "WebJobSchedule"
+            },           
+            {
+              "Value": "600",
+              "Name": "WEBJOBS_IDLE_TIMEOUT"
+            },
+            {
+              "Value": "15",
+              "Name": "WEBJOBS_RESTART_TIME"
+            },
+            {
+              "Value": "true",
+              "Name": "DisableConsole"
+            },            
+            {
+              "Value": "false",
+              "Name": "DisableWebJob"
+            }           
+          ]
         }
       },
       "resources": 
