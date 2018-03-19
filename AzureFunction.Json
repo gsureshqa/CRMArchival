@@ -243,7 +243,7 @@
 
           "properties": {
             
-            "https://github.com/JitendraMishra2010/CRMArchival/raw/master/Microsoft.Dynamics.Archival.D365WebApp.zip",
+             "packageUri": "https://github.com/JitendraMishra2010/CRMArchival/raw/master/Microsoft.Dynamics.Archival.D365WebApp.zip",
             "dbType": "None",
 
             "connectionString": "",
