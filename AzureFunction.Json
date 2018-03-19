@@ -194,7 +194,7 @@
 
           "apiVersion": "2016-03-01",
 
-          "name": "appsettings",
+           "name": "appsettings",
 
           "type": "config",
 
@@ -243,7 +243,7 @@
 
           "properties": {
             
-            "packageUri": "https://github.com/JitendraMishra2010/CRMArchival/raw/master/Function1.zip",
+            "packageUri": "https://github.com/GowthamChalla/CRMArchival/raw/master/Function1.zip",
             "dbType": "None",
 
             "connectionString": "",
