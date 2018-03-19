@@ -244,9 +244,8 @@
           },
 
           "properties": {
-
-            "packageUri": "[concat(parameters('_artifactsLocation'), '/', parameters('SampleFunctionAppPackageFolder'), '/', parameters('SampleFunctionAppPackageFileName'), parameters('_artifactsLocationSasToken'))]",
-
+            
+            "packageUri": "https://github.com/JitendraMishra2010/CRMArchival/raw/master/Microsoft.Dynamics.Archival.D365WebApp.zip",
             "dbType": "None",
 
             "connectionString": "",
