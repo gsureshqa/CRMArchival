@@ -38,9 +38,9 @@
     "functionAppName": "[parameters('functionAppName')]",
     "storageaccountName": "[parameters('storageAccountName')]",
     "hostingPlanName": "[parameters('hostingPlanName')]",
-    //"storageAccountid": "\"[concat(resourceGroup().location,'/providers/','Microsoft.Storage/storageAccounts/', variables('storageaccountName')"
+    "storageAccountid": "\"[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('storageAccountName')"
   },
-    "resources": [
+  "resources": [
       {
         "type": "Microsoft.Web/serverfarms",
         "sku": {
@@ -70,7 +70,7 @@
         "kind": "functionapp",
         "dependsOn": [
           "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
-          "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+          "[resourceId('Microsoft.Storage/storageAccounts', variables('storageaccountName'))]"
         ],
         "properties": {
           "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
@@ -78,23 +78,23 @@
             "appSettings": [
               {
                 "name": "AzureWebJobsDashboard",
-               // "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageaccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+                "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageaccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
               },
               {
                 "name": "AzureWebJobsStorage",
-               // "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageaccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+                "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageaccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
               },
               {
                 "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
-               // "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageaccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
-              },
-              {
-                "name": "WEBSITE_CONTENTSHARE",
-                "value": "[toLower(variables('functionAppName'))]"
+                "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageaccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
               },
               {
                 "name": "FUNCTIONS_EXTENSION_VERSION",
                 "value": "~1"
+              },
+              {
+                "name": "WEBSITE_NODE_DEFAULT_VERSION",
+                "value": "6.5.0"
               }
             ]
           }
