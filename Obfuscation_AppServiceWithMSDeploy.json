@@ -114,7 +114,7 @@
             "displayName": "ObfuscationFunctionAppPackage"
           },
           "properties": {
-            "packageUri": "https://github.com/JitendraMishra2010/CRMArchival/raw/master/Microsoft.Dynamics.Archival.D365WebApp.zip",
+            "packageUri": "https://github.com/GowthamChalla/CRMArchival/raw/master/FunctionApp2.1.0.0.nupkg",
             "dbType": "None",
             "connectionString": "",
             "setParameters": {
