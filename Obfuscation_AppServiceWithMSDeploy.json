@@ -179,7 +179,7 @@
             "debugSetting": { "detailLevel": "requestContent, responseContent" },
             "packageUri": "https://github.com/JitendraMishra2010/CRMArchival/raw/master/Microsoft.Dynamics.Archival.D365WebApp.zip"
           },
-          "dependsOn": [ "[concat('Microsoft.Web/sites/', variables('webSiteName'))]" ]
+          "dependsOn": [ "[concat('Microsoft.Web/sites/', parameters('webSiteName'))]" ]
         }
       ],
       "dependsOn": [ "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]", "[concat('Microsoft.Storage/storageAccounts/',parameters('storageAccountName'))]" ]
