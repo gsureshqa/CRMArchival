@@ -9,7 +9,7 @@
       "minLength": 1,
       "metadata": { "description": "Enter the name you wish to give to the Storage account, Do not enter the name that already exists." }
     },
-    "storageAcccountType": {
+    "storageAccountType": {
       "type": "string",
       "allowedValues": [ "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS" ],
       "defaultValue": "Standard_LRS",
