@@ -26,7 +26,7 @@
     "skuCapacity": {
       "type": "int",
       "minValue": 1,
-      "defaultValue": "1",
+      "defaultValue": 1,
       "metadata": { "description": "Describes plan's instance count" }
     },
     "hostingPlanName": {
