@@ -94,8 +94,7 @@
           "type": "config",
           "dependsOn": [
             "[resourceId('Microsoft.Web/sites', parameters('functionAppName'))]",
-            "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
-            "[concat('Microsoft.Web/sites/', variables('functionAppName'), '/Extensions/MSDeploy')]"
+            "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"            
           ],
           "properties": {
             "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2015-05-01-preview').key1,';')]",
