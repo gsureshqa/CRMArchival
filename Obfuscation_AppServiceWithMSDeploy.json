@@ -124,9 +124,7 @@
             "properties": {
               "packageUri": "https://github.com/GowthamChalla/AzureFunctions/raw/master/FunctionApp2.zip",
               "dbType": "None",
-              "connectionString": "",
-              "setParameters": {
-                "IIS Web Application Name": "[parameters('functionAppName')]"
+              "connectionString": ""              
               }
             }
           }
