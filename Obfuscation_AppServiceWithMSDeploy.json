@@ -122,7 +122,7 @@
               "displayName": "ObfuscationFunctionAppPackage"
             },
             "properties": {
-              "packageUri": "https://github.com/GowthamChalla/AzureFunctions/raw/master/FunctionApp2.zip",
+              "packageUri": "https://github.com/GowthamChalla/AzureFunctions/raw/master/PublishOutput.zip",
               "dbType": "None",
               "connectionString": ""              
               }
