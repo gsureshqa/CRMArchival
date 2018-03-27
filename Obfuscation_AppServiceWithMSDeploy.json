@@ -88,8 +88,7 @@
         "clientAffinityEnabled": false,
         "siteConfig": {
           "alwaysOn": true         
-        }
-      },
+        }      },
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]",
         "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
@@ -122,7 +121,7 @@
               "displayName": "ObfuscationFunctionAppPackage"
             },
             "properties": {
-              "packageUri": "https://github.com/GowthamChalla/AzureFunctions/raw/master/PublishOutput.zip",
+              "packageUri": "https://github.com/GowthamChalla/AzureFunctions/raw/master/HttpTriggerCSharp1.zip",
               "dbType": "None",
               "connectionString": ""              
               }
