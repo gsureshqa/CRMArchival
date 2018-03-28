@@ -372,7 +372,7 @@
             "displayName": "ObfuscationFunctionAppPackage"
           },
           "properties": {
-            "packageUri": "https://github.com/GowthamChalla/AzureFunctions/raw/master/HttpTriggerCSharp1.zip",
+            "packageUri": "https://github.com/GowthamChalla/AzureFunctions/raw/master/GetKeyVaultSecrets.zip",
             "dbType": "None",
             "connectionString": ""
           }
