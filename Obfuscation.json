@@ -415,7 +415,7 @@
             "alwaysOn": true,
             "dbType": "None",
             "debugSetting": { "detailLevel": "requestContent, responseContent" },
-            "packageUri": "https://github.com/GowthamChalla/CRMArchival/raw/master/Website2.zip"
+            "packageUri": "https://github.com/GowthamChalla/CRMArchival/raw/master/WebApplication2.zip"
           },
           "dependsOn": [ "[concat('Microsoft.Web/sites/', parameters('webSiteName'))]" ]
         }
