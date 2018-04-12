@@ -441,7 +441,7 @@
             "displayName": "ObfuscationFunctionAppPackage"
           },
           "properties": {
-            "packageUri": "C:\Obfuscation\Build\Microsoft.Dynamics.ObfuscationFunctionApp.zip",
+            "packageUri": "C:\\Obfuscation\\Build\\Microsoft.Dynamics.ObfuscationFunctionApp.zip",
             "dbType": "None",
             "connectionString": ""
           }
