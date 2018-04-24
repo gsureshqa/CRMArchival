@@ -94,7 +94,7 @@
     },
     "sqlserveradministratorLoginPassword": {
       "type": "securestring",
-      "defaultValue": "password"
+      "defaultValue": "P@ssw0rd"
     }
   },
     "variables": {},
