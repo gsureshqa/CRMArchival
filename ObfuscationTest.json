@@ -539,7 +539,7 @@
             },
             {
               "value": "00000000-0000-0000-0000-000000000201",
-              "name": "MemberObjectId"
+               "name": "MemberObjectId"
             },
             {
               "value": "Contributor",
@@ -592,7 +592,7 @@
         },
         "protectedSettings": {
           "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File AADAppChanges.ps1 -UserAADAppName  ',ObfuscationTesting,' -AADWebAppID  ',5e66d153-0c9e-49ff-a368-ae757f3288d0,' -AADNativeAppID  ',d1ebf7e3-6a8b-4431-bcd4-1bf1d214d7f8,' -ReplyUrl   ',https://cosmiccrmuat.crm.dynamics.com/')]"
-        }
+        },
         "dependsOn": [ "[concat('Microsoft.Web/sites/', parameters('webSiteName'))]" ]
       }
     }
