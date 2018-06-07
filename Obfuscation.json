@@ -441,7 +441,7 @@
             "displayName": "ObfuscationFunctionAppPackage"
           },
           "properties": {
-            "packageUri": "https://github.com/GowthamChalla/AzureFunctions/raw/master/GetKeyVaultSecrets.zip",
+            "packageUri": "https://github.com/GowthamChalla/Dynamics365Obfuscation/raw/master/GetKeyVaultSecrets.zip",
             "dbType": "None",
             "connectionString": ""
           }
