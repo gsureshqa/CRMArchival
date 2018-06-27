@@ -6,7 +6,7 @@
       "type": "String",
       "metadata": { "description": "Enter the CRM User name which will be used to login to CRM having admin privileges" }
     },
-    "CRMPassword": {
+    "CRMPword": {
       "type": "SecureString",
       "metadata": { "description": "Enter the Password of the CRM User name" }
     },
@@ -300,11 +300,11 @@
     },
     {
       "type": "Microsoft.KeyVault/vaults/secrets",
-      "name": "[concat(variables('KeyVaultName'), '/','CRMPassword')]",
+      "name": "[concat(variables('KeyVaultName'), '/','CRMPword')]",
       "apiVersion": "2015-06-01",
       "properties": {
         "contentType": "text/plain",
-        "value": "[parameters('CRMPassword')]"
+        "value": "[parameters('CRMPword')]"
       },
       "dependsOn": [ "[concat('Microsoft.KeyVault/vaults/', variables('KeyVaultName'))]" ]
     },
