@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Website" />
+  <setParameter name="DefaultConnection-Web.config Connection String" value="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-ArchivalWebApp-20171012022748.mdf;Initial Catalog=aspnet-ArchivalWebApp-20171012022748;Integrated Security=True" />
+</parameters>
